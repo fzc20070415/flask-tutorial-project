@@ -1,1 +1,1 @@
-web: gunicorn "tutorial_project:create_app()"
+web: gunicorn "flaskr:create_app()"
