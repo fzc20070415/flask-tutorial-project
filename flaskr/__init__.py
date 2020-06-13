@@ -27,4 +27,17 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
+    # Import the method to initialize database
+    from . import db
+    db.init_app(app)
+
+    # Import and register the Authentication blueprint
+    from . import auth
+    app.register_blueprint(auth.bp)
+
+    # Import and register the Blog blueprint
+    from . import blog
+    app.register_blueprint(blog.bp) # Note Blog does not have url_prefix but Auth does
+    app.add_url_rule('/', endpoint='index')
+
     return app
